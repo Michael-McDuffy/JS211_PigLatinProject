@@ -2,6 +2,7 @@
 
 // brings in the assert module for unit testing
 const assert = require('assert');
+const { constants } = require('buffer');
 // brings in the readline module to access the command line
 const readline = require('readline');
 // use the readline module to print out to the command line
@@ -12,9 +13,22 @@ const rl = readline.createInterface({
 
 
 const pigLatin = (word) => {
-
+  let vowels =['a','e','i','o','u'] 
   // Your code here
-
+  word = word.trim().toLowerCase()
+  if (vowels.includes(word[0])){
+    return word + 'yay';
+  } else {
+    for (let i = 0; i < word.length; i++ ){
+      if (vowels.includes(word[i])){
+        let foundIndex = word.indexOf(word[i])
+        let consonants = word.slice(0, foundIndex)
+        return word.slice(foundIndex) + consonants + 'ay'
+      }
+    }
+    
+  }
+  console.log('HERE')
 }
 
 // the first function called in the program to get an input from the user
